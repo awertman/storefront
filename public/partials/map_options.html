@@ -1,0 +1,19 @@
+<div ng-controller="mapOptionsController" width="100%">
+
+Map type:
+<select ng-change="mapOptions.changeMapType(mapType.name)" ng-model="mapType" ng-options="t.name for t in mapTypes">
+</select>
+
+
+View type:
+<select ng-model="viewType" ng-options="t.name for t in viewTypes">
+</select>
+
+
+<div ng-if="mapType.name == 'heatmap'">
+  Radius:
+  <select  ng-model="heatMapRadius" ng-options="t for t in heatMapRadiusOptions">
+  </select>
+</div>
+
+</div>
