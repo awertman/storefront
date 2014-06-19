@@ -1,4 +1,4 @@
-storefront.factory('map', ['heatMap', 'marker',  function (heatMap,marker) {
+storefront.factory('map', ['$rootScope', 'heatMap', 'marker',  function ($rootScope, heatMap,marker) {
   content = {
     options: {
       viewTypes: [{name: "Hybrid"}, {name: "Roadmap"}, {name: "Satellite"}, {name: "Terrain"}],
@@ -7,7 +7,7 @@ storefront.factory('map', ['heatMap', 'marker',  function (heatMap,marker) {
     selection: {
       zoom: 13,
       center: "",
-      mapTypeId: google.maps.MapTypeId.HYBRID //roadmap, satellite, terrain
+      mapTypeId: google.maps.MapTypeId.HYBRID
     },
     layer: {
       heatMap: heatMap,
@@ -31,6 +31,10 @@ storefront.factory('map', ['heatMap', 'marker',  function (heatMap,marker) {
         return google.maps.MapTypeId.ROADMAP
       }
     },
+    renderLayers: function(locations) {
+      this.layer.heatMap.render(this.canvas, locations.business)
+      this.layer.marker.render(this.canvas, locations.realEstate)
+    },
     refreshLayout: function(inputs) {
       var options = {
         viewType: inputs.viewType.name,
@@ -38,8 +42,8 @@ storefront.factory('map', ['heatMap', 'marker',  function (heatMap,marker) {
         longitude: -122.433523
       }
       this.initializeLayout(options)
-      // this.layer.heatMap.buildGeoLocations()
 
+      $rootScope.$broadcast("mapTypeChanged")
     }
   }
   return content

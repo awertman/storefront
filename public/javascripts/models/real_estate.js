@@ -1,4 +1,4 @@
-storefront.factory('realEstate', ['map', function (map) {
+storefront.factory('realEstate', ['$rootScope', function ($rootScope) {
   content = {
     geo: [],
     details: [],
@@ -9,7 +9,7 @@ storefront.factory('realEstate', ['map', function (map) {
           this.geo.push(new google.maps.LatLng( geoData[i].latitude, geoData[i].longitude) )
         }
       }
-      map.layer.marker.render(map.canvas, this.geo)
+      $rootScope.$broadcast("realEstateLocationsCompleted")
     }
   }
   return content

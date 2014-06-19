@@ -1,4 +1,4 @@
-storefront.factory('business', ['map', function (map) {
+storefront.factory('business', ['$rootScope', 'map', function ($rootScope,map) {
   content = {
     geo: [],
     details: [],
@@ -9,7 +9,7 @@ storefront.factory('business', ['map', function (map) {
         bounds: map.canvas.getBounds(),
         keyword: this.queryParams.businessType
       }
-      map.service.radarSearch(request, this.googleMapsCallBack.bind(this));
+      map.service.radarSearch(request, this.googleMapsCallBack.bind(this))
     },
     googleMapsCallBack: function(data, status) {
       if (status != google.maps.places.PlacesServiceStatus.OK) {
@@ -17,7 +17,6 @@ storefront.factory('business', ['map', function (map) {
         return;
       }
       this.buildGeoLocations(data)
-      map.layer.heatMap.render(map.canvas, this)
     },
     buildGeoLocations: function(data) {
       if (data) {
@@ -26,6 +25,7 @@ storefront.factory('business', ['map', function (map) {
           this.geo.push(data[i].geometry.location)
         }
       }
+      $rootScope.$broadcast("businessLocationsCompleted")
     }
   }
   return content

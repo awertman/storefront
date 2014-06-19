@@ -1,5 +1,5 @@
-ApplicationController.controller('searchController', ['$scope', '$http', 'locations',
-  function ($scope, $http, locations) {
+ApplicationController.controller('searchController', ['$scope', '$http', 'locations', 'map',
+  function ($scope, $http, locations,map) {
     $scope.query = {}
     $scope.submitForm = function() {
       $http.post('/locations', { data:
