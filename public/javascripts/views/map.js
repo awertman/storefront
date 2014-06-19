@@ -6,7 +6,7 @@ storefront.factory('map', ['$rootScope', 'heatMap', 'marker',  function ($rootSc
     },
     selection: {
       zoom: 13,
-      center: "",
+      center: {},
       mapTypeId: google.maps.MapTypeId.HYBRID
     },
     layer: {
@@ -38,11 +38,10 @@ storefront.factory('map', ['$rootScope', 'heatMap', 'marker',  function ($rootSc
     refreshLayout: function(inputs) {
       var options = {
         viewType: inputs.viewType.name,
-        latitude: 37.774546,
-        longitude: -122.433523
+        latitude: this.canvas.getCenter().k,
+        longitude: this.canvas.getCenter().A
       }
       this.initializeLayout(options)
-
       $rootScope.$broadcast("mapTypeChanged")
     }
   }
