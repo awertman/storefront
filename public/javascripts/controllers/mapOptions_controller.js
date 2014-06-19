@@ -1,15 +1,11 @@
-ApplicationController.controller('mapOptionsController', ['$scope', '$http', 'mapOptions',
-  function ($scope, $http, mapOptions) {
-    console.log("inside map options controller")
-    $scope.viewTypes = mapOptions.viewTypes
-    $scope.viewType = $scope.viewTypes[0]
+ApplicationController.controller('mapOptionsController', ['$scope', '$http', 'map',
+  function ($scope, $http, map) {
 
-    $scope.mapTypes = mapOptions.mapTypes
-    $scope.mapType = $scope.mapTypes[0]
+    $scope.map = map
 
-    $scope.heatMapRadiusOptions = mapOptions.heatMapRadiusOptions
-    $scope.heatMapRadius = mapOptions.heatMapRadiusOptions[0]
+    $scope.currentMapType = map.options.mapTypes[0]
+    $scope.currentViewType = map.options.viewTypes[0]
+    $scope.currentRadius = map.layer.heatMap.options.radius[1]
 
-    $scope.mapOptions = mapOptions
   }
 ]);

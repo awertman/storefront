@@ -1,19 +1,26 @@
-<div ng-controller="mapOptionsController" width="100%">
-
-Map type:
-<select ng-change="mapOptions.changeMapType(mapType.name)" ng-model="mapType" ng-options="t.name for t in mapTypes">
-</select>
-
-
-View type:
-<select ng-model="viewType" ng-options="t.name for t in viewTypes">
-</select>
-
-
-<div ng-if="mapType.name == 'heatmap'">
-  Radius:
-  <select  ng-model="heatMapRadius" ng-options="t for t in heatMapRadiusOptions">
+<div ng-controller="mapOptionsController">
+  Map Options:
+  <br>
+  View type:
+  <select ng-change="map.refreshLayout({viewType: currentViewType})" ng-model="currentViewType" ng-options="t.name for t in map.options.viewTypes">
   </select>
-</div>
+
+
+  <hr>
+  Heat Map Options:
+  <br>
+
+  Radius: <select ng-change="map.layer.heatMap.changeRadius(currentRadius)" ng-model="currentRadius" ng-options="t for t in map.layer.heatMap.options.radius">
+  </select>
+
+  <button ng-model="map" ng-click="map.layer.heatMap.toggle(map.canvas)"> Toggle Heat Map
+  </button>
+
+  <button ng-model="map" ng-click="map.layer.heatMap.changeGradient()"> Change Color
+  </button>
+
+
 
 </div>
+
+
