@@ -19,6 +19,7 @@ storefront.factory('business', ['$rootScope', 'map', function ($rootScope,map) {
       this.buildGeoLocations(data)
     },
     buildGeoLocations: function(data) {
+      this.details = data
       if (data) {
         this.geo = []
         for (var i in data) {

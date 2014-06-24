@@ -9,7 +9,6 @@ ApplicationController.controller('mapController', ['$scope', '$http', 'map', 'lo
 
     map.initializeLayout(options)
 
-
     $scope.$on("businessLocationsCompleted", function(){
       map.layer.heatMap.render(map.canvas, locations.business)
     })
@@ -19,8 +18,7 @@ ApplicationController.controller('mapController', ['$scope', '$http', 'map', 'lo
     })
 
     $scope.$on("mapTypeChanged", function() {
-      map.layer.heatMap.render(map.canvas, locations.business)
-      map.layer.marker.render(map.canvas, locations.realEstate)
+      map.refreshLayers(locations)
     })
 
   }

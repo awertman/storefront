@@ -31,7 +31,7 @@ storefront.factory('map', ['$rootScope', 'heatMap', 'marker',  function ($rootSc
         return google.maps.MapTypeId.ROADMAP
       }
     },
-    renderLayers: function(locations) {
+    refreshLayers: function(locations) {
       this.layer.heatMap.render(this.canvas, locations.business)
       this.layer.marker.render(this.canvas, locations.realEstate)
     },
@@ -40,6 +40,7 @@ storefront.factory('map', ['$rootScope', 'heatMap', 'marker',  function ($rootSc
         viewType: inputs.viewType.name,
         latitude: this.canvas.getCenter().k,
         longitude: this.canvas.getCenter().A
+        // zoom
       }
       this.initializeLayout(options)
       $rootScope.$broadcast("mapTypeChanged")
