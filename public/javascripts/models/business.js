@@ -6,8 +6,10 @@ storefront.factory('business', ['$rootScope', 'map', function ($rootScope,map) {
     initializeGoogleMapsQuery: function(inputs) {
       this.queryParams = inputs ||  this.queryParams
       var request = {
-        bounds: map.canvas.getBounds(),
-        keyword: this.queryParams.businessType
+        // bounds: map.canvas.getBounds(),
+        location: map.canvas.getCenter(),
+        keyword: this.queryParams.businessType,
+        radius: 1000,
       }
       map.service.radarSearch(request, this.googleMapsCallBack.bind(this))
     },
@@ -19,6 +21,7 @@ storefront.factory('business', ['$rootScope', 'map', function ($rootScope,map) {
       this.buildGeoLocations(data)
     },
     buildGeoLocations: function(data) {
+      console.log(data.length)
       this.details = data
       if (data) {
         this.geo = []
