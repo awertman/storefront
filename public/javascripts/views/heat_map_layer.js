@@ -11,7 +11,7 @@ storefront.factory('heatMap', [function() {
       this.layer = new google.maps.visualization.HeatmapLayer({ data: pointArray })
       this.layer.setMap(mapCanvas);
 
-      google.maps.event.addListenerOnce(mapCanvas, 'bounds_changed', locations.initializeGoogleMapsQuery.bind(locations) )
+      // google.maps.event.addListenerOnce(mapCanvas, 'bounds_changed', locations.initializeGoogleMapsQuery.bind(locations) )
     },
     toggle: function(mapCanvas) {
       this.layer.setMap(this.layer.getMap() ? null : mapCanvas)
