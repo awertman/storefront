@@ -12,10 +12,14 @@ ApplicationController.controller('searchController', ['$scope', '$http', 'locati
       .success(function(data) {
         data = {businessParams: $scope.query, realEstateLocations: data.locations.realEstate}
         locations.initializeDataBuild(data)
-      });
-    };
+      })
+      $http.get('/real_estate')
+      .success(function(data) {
+        console.log(data)
+      })
 
+    }
   }
-]);
+])
 
 
